@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import { BrowserRouter, Link, Navigate, Route, Routes } from "react-router-dom";
+import { Admin } from "./pages/admin/Admin";
+import { Catalog } from "./pages/catalog/Catalog";
+import { Home } from "./pages/home/Home";
+import { Login } from "./pages/login/Login";
+import { NavBar } from "./common/NavBar";
+import { PhotoDetail } from "./pages/catalog/PhotoDetail";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <NavBar />
+      <hr />
+
+      <Routes>
+        <Route path="/" element={<Navigate to="home" />} />
+        <Route
+          path="*"
+          element={
+            <div>
+              <p>Pagina non esistente</p>
+              <Link to="/">Go to home</Link>
+            </div>
+          }
+        />
+        <Route path="login" element={<Login />} />
+        <Route path="admin" element={<Admin />} />
+        <Route path="catalog" element={<Catalog />} />
+        <Route path="catalog/:id" element={<PhotoDetail />} />
+        <Route path="home" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
