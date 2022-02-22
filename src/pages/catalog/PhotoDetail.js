@@ -9,16 +9,17 @@ export const PhotoDetail = () => {
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/photos/${id}`)
-      .then(res => res.json())
-      .then(res => setPhoto(res)) 
-  }, [id]);   
-
+      .then((res) => res.json())
+      .then((res) => setPhoto(res));
+  }, [id]);
 
   return (
     <div>
-      PhotoDetail {id}  
-      {console.log(photo)}
-      {photo?.title}
+      <h2>Dettaglio foto {id}</h2>
+      <a href={photo?.url} target="_blank">
+        <img src={photo?.thumbnailUrl} />
+        <span>{photo?.title}</span>
+      </a>
     </div>
   );
 };

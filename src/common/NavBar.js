@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { IfLogged } from "./IfLogged";
 
 export const NavBar = () => {
   function setActive({ isActive }) {
@@ -11,9 +12,11 @@ export const NavBar = () => {
       <NavLink to="home" className={setActive}>
         Home
       </NavLink>
-      <NavLink to="admin" className={setActive}>
-        admin
-      </NavLink>
+      <IfLogged>
+        <NavLink to="admin" className={setActive}>
+          admin
+        </NavLink>
+      </IfLogged>
       <NavLink to="login" className={setActive}>
         login
       </NavLink>
